@@ -11,8 +11,9 @@ from app.services.location import LocationIQService
 class ListingRepository:
     @staticmethod
     async def create(db: AsyncSession, listing_in: ListingCreate, agent_id: int) -> Listing:
+        final_agent_id = listing_in.agent_id or agent_id
         db_listing = Listing(
-            agent_id=agent_id,
+            agent_id=final_agent_id,
             title=listing_in.title,
             description=listing_in.description,
             price=listing_in.price,

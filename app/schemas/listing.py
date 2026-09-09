@@ -16,6 +16,7 @@ class ListingBase(BaseModel):
     square_footage: Optional[int] = None
 
 class ListingCreate(ListingBase):
+    agent_id: Optional[int] = None
     location: LocationBase
     images: List[PropertyImageBase] = []
 
