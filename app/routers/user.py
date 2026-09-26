@@ -4,6 +4,7 @@ from typing import List
 from database import get_db
 from app.schemas.user import UserCreate, UserUpdate, UserOut, UserLogin
 from app.schemas.token import Token
+from app.schemas.forgot_password import UserForgotPassword
 from app.repositories.user import UserRepository
 from app.services.security import SecurityService
 from app.services.user import UserService
@@ -24,6 +25,11 @@ async def login(login_in: UserLogin, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Incorrect email or password")
     token = SecurityService.create_access_token(data={"sub": user.email})
     return {"access_token": token, "token_type": "bearer"}
+
+@router.post("/forgot-password")
+async def forgot_password(user_in: UserForgotPassword, db: AsyncSession = Depends(get_db)):
+    user = await UserRepository.get_by_email(db, user_in.email)
+    return {"message": "If an account exists with that email, a password reset link has been sent."}
 
 @router.get("/me", response_model=UserOut)
 async def get_current_user_profile(current_user = Depends(UserService.get_current_user)):

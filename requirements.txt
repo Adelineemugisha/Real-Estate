@@ -202,4 +202,4 @@ webencodings==0.5.1
 websocket-client==1.9.0
 websockets==16.1.1
 widgetsnbextension==4.0.15
-xgboost @ file:///tmp/xgb_test/xgboost-3.2.0-py3-none-manylinux_2_28_x86_64.whl#sha256=99b4a6bbcb47212fec5cf5fbe12347215f073c08967431b0122cfbd1ee70312c
+xgboost==3.2.0
