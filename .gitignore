@@ -1,3 +1,5 @@
-echo "__pycache__/" > .gitignore
-echo "venv/" >> .gitignore
-echo "env/" >> .gitignore
+__pycache__/
+venv/
+env/
+test_real_estate.db
+.pytest_cache/
