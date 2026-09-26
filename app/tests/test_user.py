@@ -27,7 +27,7 @@ def test_register_user():
     assert data["last_name"] == user_data["last_name"]
     assert data["role"] == user_data["role"]
     assert "password" not in data
-    return data["id"]
+    assert data["id"] > 0
 
 
 def test_login_user():
@@ -49,7 +49,7 @@ def test_login_user():
     data = response.json()
     assert "access_token" in data
     assert data["token_type"] == "bearer"
-    return data["access_token"]
+    assert len(data["access_token"]) > 0
 
 
 def test_get_current_user():

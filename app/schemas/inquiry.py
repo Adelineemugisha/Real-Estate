@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, List, Literal
 from datetime import datetime
 
@@ -19,5 +19,4 @@ class InquiryOut(InquiryBase):
     status: Literal["pending", "contacted", "closed"]
     sent_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

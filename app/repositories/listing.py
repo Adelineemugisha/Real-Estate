@@ -83,7 +83,7 @@ class ListingRepository:
         db_listing = result.scalars().first()
         if not db_listing:
             return None
-        update_data = listing_in.dict(exclude_unset=True)
+        update_data = listing_in.model_dump(exclude_unset=True)
         for key, value in update_data.items():
             if value is not None:
                 setattr(db_listing, key, value)

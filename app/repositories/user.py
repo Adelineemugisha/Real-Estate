@@ -43,7 +43,7 @@ class UserRepository:
         db_user = result.scalars().first()
         if not db_user:
             return None
-        update_data = user_in.dict(exclude_unset=True)
+        update_data = user_in.model_dump(exclude_unset=True)
         for key, value in update_data.items():
             if value is not None:
                 setattr(db_user, key, value)

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, List, Literal
 from decimal import Decimal
 from datetime import datetime
@@ -8,7 +8,7 @@ from app.schemas.property_image import PropertyImageBase, PropertyImageOut
 class ListingBase(BaseModel):
     title: str = Field(..., max_length=150)
     description: str
-    price: Decimal = Field(..., gte=0)
+    price: Decimal = Field(..., ge=0)
     property_type: Literal["house", "apartment", "condo", "land"]
     listing_type: Literal["sale", "rent"]
     bedrooms: int = 0
@@ -39,5 +39,4 @@ class ListingOut(ListingBase):
     location: Optional[LocationOut]
     images: List[PropertyImageOut] = []
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

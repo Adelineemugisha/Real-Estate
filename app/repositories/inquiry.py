@@ -38,7 +38,7 @@ class InquiryRepository:
         db_inquiry = result.scalars().first()
         if not db_inquiry:
             return None
-        update_data = inquiry_in.dict(exclude_unset=True)
+        update_data = inquiry_in.model_dump(exclude_unset=True)
         for key, value in update_data.items():
             if value is not None:
                 setattr(db_inquiry, key, value)

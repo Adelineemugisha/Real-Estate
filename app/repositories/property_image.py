@@ -33,7 +33,7 @@ class PropertyImageRepository:
         db_image = result.scalars().first()
         if not db_image:
             return None
-        update_data = image_in.dict(exclude_unset=True)
+        update_data = image_in.model_dump(exclude_unset=True)
         for key, value in update_data.items():
             if value is not None:
                 setattr(db_image, key, value)
