@@ -1,8 +1,12 @@
+import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.pool import NullPool
 
-DATABASE_URL = "postgresql+asyncpg://postgres:postgres@localhost:5432/real_estate_db"
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql+asyncpg://postgres:postgres@localhost:5432/real_estate_db",
+)
 
 engine = create_async_engine(
     DATABASE_URL,
