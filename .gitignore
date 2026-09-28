@@ -1,5 +1,6 @@
 __pycache__/
 venv/
 env/
+.env
 test_real_estate.db
 .pytest_cache/
