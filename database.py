@@ -6,14 +6,13 @@ from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 
 
 def _normalize_url(url: str) -> str:
-    """Ensure the URL uses the asyncpg dialect prefix and strips unsupported params."""
+
     if url.startswith("postgresql://"):
         url = "postgresql+asyncpg://" + url[len("postgresql://"):]
 
     parsed = urlparse(url)
     query_params = parse_qs(parsed.query)
 
-    # asyncpg does not support channel_binding or sslmode in the URL
     query_params.pop("channel_binding", None)
     query_params.pop("sslmode", None)
 
